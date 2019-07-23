@@ -1,4 +1,4 @@
-import allTodos from "../../reducers/selectors";
+import {allTodos} from "../../reducers/selectors";
 import TodoList from './todo_list';
 import { connect } from "react-redux";
 import {receiveTodo, removeTodo} from '../../actions/todo_actions';
