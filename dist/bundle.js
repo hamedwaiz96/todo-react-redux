@@ -319,6 +319,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _todo_detail_view__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./todo_detail_view */ "./frontend/components/todos/todo_detail_view.jsx");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_todo_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/todo_actions */ "./frontend/actions/todo_actions.js");
+/* harmony import */ var _actions_step_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/step_actions */ "./frontend/actions/step_actions.js");
+
 
 
 
@@ -327,6 +329,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     removeTodo: function removeTodo(todo) {
       return dispatch(Object(_actions_todo_actions__WEBPACK_IMPORTED_MODULE_2__["removeTodo"])(todo));
+    },
+    receiveSteps: function receiveSteps(steps) {
+      return dispatch(Object(_actions_step_actions__WEBPACK_IMPORTED_MODULE_3__["receiveSteps"])(steps));
     }
   };
 };
