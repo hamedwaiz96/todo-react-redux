@@ -1,4 +1,6 @@
 import React from 'react';
+import StepForm from './step_form';
+import StepListItemContainer from './step_list_item_container';
 
 class StepList extends React.Component {
     constructor(props){
@@ -16,7 +18,7 @@ class StepList extends React.Component {
                         )
                     })}
                 </ul>
-                <StepForm receiveStep={self.props.receiveStep} />
+                <StepForm receiveStep={self.props.receiveStep} todoId={self.props.todo_id} />
             </div>
         )
     }
