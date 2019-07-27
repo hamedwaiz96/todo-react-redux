@@ -6,6 +6,10 @@ class StepList extends React.Component {
     constructor(props){
         super(props);
     }
+    componentDidMount() {
+        const self = this;
+        this.props.fetchSteps(self.props.todo_id);
+    }
 
     render(){
         const self = this;
@@ -18,7 +22,7 @@ class StepList extends React.Component {
                         )
                     })}
                 </ul>
-                <StepForm receiveStep={self.props.receiveStep} todoId={self.props.todo_id} />
+                <StepForm createStep={self.props.createStep} todoId={self.props.todo_id} />
             </div>
         )
     }

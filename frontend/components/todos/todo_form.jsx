@@ -43,12 +43,15 @@ class TodoForm extends React.Component {
             error1 = "";
         }
         return(
-            <form onSubmit={self.addTodo}>
+            <div>
                 {error1}
-                <input type="text" name="title" value={self.state.title} onChange={self.update('title')} />
-                <input type="text" name="body" value={self.state.body} onChange={self.update('body')} />
-                <input type="submit"/>
-            </form>
+                <form onSubmit={self.addTodo}>
+                    <input type="text" name="title" value={self.state.title} onChange={self.update('title')} />
+                    <input type="text" name="body" value={self.state.body} onChange={self.update('body')} />
+                    <input type="submit" />
+                </form>
+            </div>
+            
         )
     }
 }

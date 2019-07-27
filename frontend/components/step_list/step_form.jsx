@@ -5,32 +5,40 @@ class StepForm extends React.Component {
     constructor(props){
         super(props);
         this.create = this.create.bind(this);
+        this.createStep = this.props.createStep;
+        const self = this;
+        this.state = {
+            title: "",
+            done: false,
+            todo_id: self.props.todoId
+        }
+    }
+
+    update(prop){
+        return e => this.setState({[prop]: e.target.value})
     }
 
     create(e){
         e.preventDefault();
         const self = this;
-        let titleInput = document.querySelector("input");
-        let new_step = {
-            id: uniqueId(),
-            title: titleInput.value,
-            done: false,
-            todo_id: self.props.todoId
-        }
-        self.props.receiveStep(new_step);
-        titleInput.value = "";
-        self.setState();
+        const step = Object.assign({}, this.state);
+        this.createStep(self.props.todoId, {step}).then(
+            () => self.setState({ title: "" })
+        );
     }
 
     render(){
         const self = this;
         return(
-            <form action="">
-                <label htmlFor="">Title:
-                    <input type="text" />
-                </label>
-                <button onClick={self.create}>Create Step</button>
-            </form>
+            <div>
+                <form onSubmit={self.create}>
+                    <label htmlFor="">Title:
+                    <input type="text" value={ self.state.title } onChange={self.update('title')} />
+                    </label>
+                    <button>Create Step</button>
+                </form>
+            </div>
+            
         )
     }
 }

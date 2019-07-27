@@ -1,7 +1,7 @@
 export const fetchTodos = () => (
     $.ajax(
         {
-            url: '/api/todos',
+            url: '/api/todos/',
             method: 'GET'
         }
     )

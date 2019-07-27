@@ -5,12 +5,15 @@ class StepListItem extends React.Component {
         super(props);
         this.remove = this.remove.bind(this);
         this.update = this.update.bind(this);
+        const self = this;
+        this.state = { done: self.props.step.done.toString() }
     }
 
     remove(e){
         e.preventDefault();
         const self = this;
-        self.props.removeStep(self.props.step);
+        self.props.deleteStep(self.props.step);
+        self.setState();
     }
 
     update(e){
@@ -24,13 +27,13 @@ class StepListItem extends React.Component {
             done: toggleDone,
             todo_id: self.props.step.todo_id
         }
-        self.props.receiveStep(step1);
-        if (done.className === "done") {
-            done.className = "";
+        self.props.updateStep(step1);
+        if (done.className === "true") {
+            done.className = "false";
         } else {
-            done.className = "done";
+            done.className = "true";
         }
-        this.setState();
+        this.setState({ done: toggleDone.toString() });
     }
 
     render(){
@@ -39,7 +42,7 @@ class StepListItem extends React.Component {
             <li key={self.props.step.id}>
             Title: {self.props.step.title}
             <button onClick={self.remove}>Delete Step</button>
-            <button onClick={self.update}>Done</button>
+            <button onClick={self.update} className={self.state.done}>Done</button>
             </li>
         )
     }
