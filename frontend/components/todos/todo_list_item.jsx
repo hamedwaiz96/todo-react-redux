@@ -6,13 +6,15 @@ class TodoListItem extends React.Component {
     constructor(props){
         super(props);
         this.remove = this.remove.bind(this);
-        this.update = this.update.bind(this);
+        this.done = this.done.bind(this);
         this.id = uniqueId().toString();
         this.state = {detail: false};
         this.switch = this.switch.bind(this);
+        const self = this;
+        this.state = {done: self.props.todo.done.toString()}
     }
 
-    update(e){
+    done(e){
         e.preventDefault();
         const self = this;
         const done = e.target;
@@ -23,19 +25,19 @@ class TodoListItem extends React.Component {
             body: self.props.todo.body,
             done: toggleDone
         }
-        self.props.receiveTodo(todo1);
-        if(done.className === "done"){
-            done.className = "";
+        self.props.updateTodo(todo1);
+        if(done.className === "true"){
+            done.className = "false";
         } else {
-            done.className = "done";
+            done.className = "true";
         }
-        this.setState();
+        this.setState({done: toggleDone.toString()});
     }
 
     remove(e){
         e.preventDefault();
         const self = this;
-        self.props.removeTodo(self.props.todo);
+        self.props.deleteTodo(self.props.todo);
         this.setState();
     }
 
@@ -57,7 +59,7 @@ class TodoListItem extends React.Component {
         return(
             <div>
                 <li key={self.id}>
-                {self.props.todo.title} <button onClick={self.remove}>Delete</button> <button name="done" onClick={self.update}>Done</button> <button onClick={self.switch}>Details</button>
+                {self.props.todo.title} <button onClick={self.remove}>Delete</button> <button name="done" className={self.state.done} onClick={self.done}>Done</button> <button onClick={self.switch}>Details</button>
                 {details}
                 </li>
                 

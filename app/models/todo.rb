@@ -1,5 +1,6 @@
 class Todo < ApplicationRecord
-    validates :title, presence: true
-    validates :body, presence: true
+    validates :title, :body, presence: true
     validates :done, inclusion: { in: [true, false] }
+
+    has_many :steps
 end

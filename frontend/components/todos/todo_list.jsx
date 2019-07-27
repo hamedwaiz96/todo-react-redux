@@ -7,6 +7,10 @@ class TodoList extends React.Component {
         super(props);
     }
 
+    componentDidMount(){
+        this.props.fetchTodos();
+    }
+
     render(){
         const self = this;
         return (
@@ -14,12 +18,12 @@ class TodoList extends React.Component {
                 <ul>
                     {self.props.todos.map((todo) => {
                         return (
-                            <TodoListItem todo={todo} removeTodo={self.props.removeTodo} receiveTodo={self.props.receiveTodo} />
+                            <TodoListItem todo={todo} deleteTodo={self.props.deleteTodo} updateTodo={self.props.updateTodo} />
                         )
                     })
                     }
                 </ul>
-                <TodoForm receiveTodo={self.props.receiveTodo} />
+                <TodoForm errors={self.props.errors} receiveTodo={self.props.receiveTodo} createTodo={self.props.createTodo} />
             </div>
             
         )

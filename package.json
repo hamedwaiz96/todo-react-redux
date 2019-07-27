@@ -1,5 +1,4 @@
 {
-<<<<<<< HEAD
   "name": "Todo_App",
   "version": "1.0.0",
   "description": "This README would normally document whatever steps are necessary to get the application up and running.",
@@ -10,14 +9,6 @@
   },
   "scripts": {
     "postinstall": "webpack",
-=======
-  "name": "Todos",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
->>>>>>> 2ebbabe2f7236bffd53229544ffe7f56bec869e1
     "webpack": "webpack --mode=development --watch"
   },
   "keywords": [],
@@ -33,11 +24,7 @@
     "react-dom": "^16.8.6",
     "react-redux": "^7.1.0",
     "redux": "^4.0.4",
-<<<<<<< HEAD
     "webpack": "^4.37.0",
-=======
-    "webpack": "^4.36.1",
->>>>>>> 2ebbabe2f7236bffd53229544ffe7f56bec869e1
     "webpack-cli": "^3.3.6"
   }
 }
