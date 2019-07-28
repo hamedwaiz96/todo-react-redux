@@ -5,7 +5,7 @@ class Api:: TodosController < ApplicationController
     end
 
     def index
-        render json: Todo.all
+        render json: Todo.all, include: :tags
     end
 
     def create
@@ -33,7 +33,7 @@ class Api:: TodosController < ApplicationController
     end
 
     def todo_params
-        params.require(:todo).permit(:title, :body, :done)
+        params.require(:todo).permit(:title, :body, :done, tag_names: [])
     end
 
 end

@@ -9,7 +9,14 @@ class TodoDetailView extends React.Component {
     render(){
         const self = this;
             return (
-                <StepListContainer todo={self.props.todo} todo_id={self.props.todo.id} />
+                <div>
+                    <ul>{self.props.todo.tags.map((tag) => {
+                        return (
+                            <li>{tag.name}</li>
+                        )
+                    })}</ul>
+                    <StepListContainer todo={self.props.todo} todo_id={self.props.todo.id} />
+                </div>
             )
     }
 }

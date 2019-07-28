@@ -762,10 +762,12 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       var self = this;
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_step_list_step_list_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, self.props.todo.tags.map(function (tag) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, tag.name);
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_step_list_step_list_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
         todo: self.props.todo,
         todo_id: self.props.todo.id
-      });
+      }));
     }
   }]);
 
@@ -823,6 +825,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _util_id__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../util/id */ "./frontend/util/id.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -858,13 +868,13 @@ function (_React$Component) {
     _this.createTodo = _this.props.createTodo;
     _this.addTodo = _this.addTodo.bind(_assertThisInitialized(_this));
     _this.update = _this.update.bind(_assertThisInitialized(_this));
-
-    var self = _assertThisInitialized(_this);
-
+    _this.addTag = _this.addTag.bind(_assertThisInitialized(_this));
     _this.state = {
       title: "",
       body: "",
-      done: false
+      done: false,
+      tag_names: [],
+      newTag: ""
     };
     return _this;
   }
@@ -889,8 +899,17 @@ function (_React$Component) {
       }).then(function () {
         return self.setState({
           title: "",
-          body: ""
+          body: "",
+          tag_names: []
         });
+      });
+    }
+  }, {
+    key: "addTag",
+    value: function addTag(e) {
+      this.setState({
+        tag_names: [].concat(_toConsumableArray(this.state.tag_names), [this.state.newTag]),
+        newTag: ""
       });
     }
   }, {
@@ -919,7 +938,17 @@ function (_React$Component) {
         name: "body",
         value: self.state.body,
         onChange: self.update('body')
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, self.state.tag_names.map(function (tag) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, tag);
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "text",
+        name: "tag",
+        value: self.state.newTag,
+        onChange: self.update('newTag')
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        type: "button",
+        onClick: self.addTag
+      }, "Add Tag"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "submit"
       })));
     }

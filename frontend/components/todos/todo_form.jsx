@@ -7,11 +7,13 @@ class TodoForm extends React.Component {
         this.createTodo = this.props.createTodo;
         this.addTodo = this.addTodo.bind(this);
         this.update = this.update.bind(this);
-        const self = this;
+        this.addTag = this.addTag.bind(this);
         this.state = {
             title: "",
             body: "",
-            done: false
+            done: false,
+            tag_names: [],
+            newTag: ""
         }
     }
 
@@ -24,8 +26,12 @@ class TodoForm extends React.Component {
         const self = this;
         const todo = Object.assign({}, this.state);
         this.createTodo({todo}).then(
-            () => self.setState({title: "", body: ""})
+            () => self.setState({title: "", body: "", tag_names: []})
         );
+    }
+
+    addTag(e){
+        this.setState({tag_names: [...this.state.tag_names, this.state.newTag], newTag: ""})
     }
 
     render(){
@@ -48,6 +54,13 @@ class TodoForm extends React.Component {
                 <form onSubmit={self.addTodo}>
                     <input type="text" name="title" value={self.state.title} onChange={self.update('title')} />
                     <input type="text" name="body" value={self.state.body} onChange={self.update('body')} />
+                    <ul>{self.state.tag_names.map((tag) => {
+                        return (
+                            <li>{tag}</li>
+                        )
+                    })}</ul>
+                    <input type="text" name="tag" value={self.state.newTag} onChange={self.update('newTag')} />
+                    <button type="button" onClick={self.addTag}>Add Tag</button>
                     <input type="submit" />
                 </form>
             </div>
